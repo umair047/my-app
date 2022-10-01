@@ -51,34 +51,34 @@ export default function TextForm(props) {
             onChange={handleOnChange}
             id="mybox"
             rows="8"
-            style={{backgroundColor: props.mode === "dark" ? "#121d48" : "white" ,
+            style={{backgroundColor: props.mode === "dark" ? "#251d5b" : "white" ,
             color: props.mode === "light" ? "black" : "white"}}
           >
             {" "}
           </textarea>
         </div>
 
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to upper case
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLowerClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLowerClick}>
           Convert to Lower case
         </button>
-        <button className="btn btn-primary mx-2" onClick={Capitalize}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={Capitalize}>
           Capitalize First Letter
         </button>
-        <button className="btn btn-primary mx-2" onClick={Clear}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={Clear}>
           Clear
         </button>
       </div>
 
       <div className="container my-3" style={{color: props.mode === "light" ? "black" : "white"}}>
         <h1>Count the text</h1>
-        <p> {text.split(" ").length} characters and {text.length} words </p>
-        <p>Time to read text: {0.008 * text.split(" ").length}</p>
+        <p> {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} characters and {text.length} words </p>
+        <p>Time to read text: {0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes</p>
 
         <h2>Preview!</h2>
-        <p>{text.length>0? text : "Enter some text in above box to preview here"}</p>
+        <p>{text.length>0? text : "Nothing to preview!"}</p>
       </div>
     </>
   );
